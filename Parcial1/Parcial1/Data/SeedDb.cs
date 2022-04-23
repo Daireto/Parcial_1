@@ -15,33 +15,37 @@ namespace Parcial1.Data
         {
             await _context.Database.EnsureCreatedAsync();
 
-            //Seed for Tickets
-            for (int i = 0; i < 5000; i++)
-            {
-                await CheckTicketsAsync(i);
-            }
-
-            //Seed for Entrances
-            await CheckEntrancesAsync("Norte");
-            await CheckEntrancesAsync("Sur");
-            await CheckEntrancesAsync("Oriental");
-            await CheckEntrancesAsync("Occidental");
+            await CheckTicketsAsync();
+            await CheckEntrancesAsync();
         }
 
-        private async Task CheckEntrancesAsync(string description)
+        private async Task CheckEntrancesAsync()
         {
-            if (_context.Entrances.Any())
+            if (!_context.Entrances.Any())
             {
-                _context.Add(new Entrance { Description = description });
+                _context.Add(new Entrance { Description = "Norte" });
+                _context.Add(new Entrance { Description = "Sur" });
+                _context.Add(new Entrance { Description = "Oriental" });
+                _context.Add(new Entrance { Description = "Occidental" });
             }
             await _context.SaveChangesAsync();
         }
 
-        private async Task CheckTicketsAsync(int id)
+        private async Task CheckTicketsAsync()
         {
-            if (_context.Tickets.Any())
+            if (!_context.Tickets.Any())
             {
-                _context.Add(new Ticket { Id = id });
+                for (int i = 0; i < 5000; i++)
+                {
+                    _context.Add(new Ticket
+                    {
+                        WasUsed = false,
+                        Document = "",
+                        Name = "",
+                        Date = null,
+                        Entrance = null
+                    });
+                }
             }
             await _context.SaveChangesAsync();
         }

@@ -12,7 +12,7 @@ using Parcial1.Data;
 namespace Parcial1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220422192123_InitialDb")]
+    [Migration("20220422211508_InitialDb")]
     partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,7 @@ namespace Parcial1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Document")

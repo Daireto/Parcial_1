@@ -8,7 +8,9 @@ namespace Parcial1.Data.Entities
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [StringLength(50, ErrorMessage = "El campo {0} no debe superar los {1} caracteres")]
-        [Display(Name = "Descripción")]
+        [Display(Name = "Entrada")]
         public string Description { get; set; }
+
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }

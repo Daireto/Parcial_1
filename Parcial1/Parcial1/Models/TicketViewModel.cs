@@ -1,13 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
-namespace Parcial1.Data.Entities
+namespace Parcial1.Models
 {
-    public class Ticket
+    public class TicketViewModel
     {
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public int Id { get; set; }
-
-        [Display(Name = "Usada")]
-        public bool WasUsed { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [StringLength(20, ErrorMessage = "El campo {0} no debe superar los {1} caracteres")]
@@ -19,9 +18,11 @@ namespace Parcial1.Data.Entities
         [Display(Name = "Nombre completo")]
         public string Name { get; set; }
 
-        [Display(Name = "Fecha y hora de uso")]
-        public DateTime? Date { get; set; }
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Range(1, 4, ErrorMessage = "Debes seleccionar una entrada")]
+        [Display(Name = "Entrada")]
+        public int EntranceId { get; set; }
 
-        public Entrance? Entrance { get; set; }
+        public IEnumerable<SelectListItem> Entrances { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Parcial1.Data;
+using Parcial1.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<DataContext>(o => {
 });
 
 builder.Services.AddTransient<SeedDb>();
+builder.Services.AddScoped<ICombosHelper, CombosHelper>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
@@ -41,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Tickets}/{action=SearchTicket}/{id?}");
 
 app.Run();
