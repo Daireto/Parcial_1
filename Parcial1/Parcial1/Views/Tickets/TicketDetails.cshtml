@@ -4,24 +4,30 @@
     ViewData["Title"] = "Asignar boleta";
 }
 
-<h2 style="text-align:center;">Información de la boleta</h2>
+<style>
+    .title{
+        font-weight: bold;
+    }
+</style>
+
+<h2 style="text-align:center;">Boleta asignada:</h2>
 <br />
 <div class="row" style="text-align:center;">
-    <div class="col-md-3 offset-3" style="text-align:left;font-weight:bold;">
+    <div class="col-md-3 offset-3">
         <div class="form-group">
-            <p>@Html.DisplayNameFor(model => model.Document)</p>
+            <p class="title">@Html.DisplayNameFor(model => model.Document)</p>
         </div>
         <div class="form-group">
-            <p>@Html.DisplayNameFor(model => model.Name)</p>
+            <p class="title">@Html.DisplayNameFor(model => model.Name)</p>
         </div>
         <div class="form-group">
-            <p>@Html.DisplayNameFor(model => model.Date)</p>
+            <p class="title">@Html.DisplayNameFor(model => model.Date)</p>
         </div>
         <div class="form-group">
-            <p>@Html.DisplayNameFor(model => model.Entrance.Description)</p>
+            <p class="title">@Html.DisplayNameFor(model => model.Entrance.Description)</p>
         </div>
     </div>
-    <div class="col-md-3" style="text-align:right;">
+    <div class="col-md-3">
         <div class="form-group">
             <p>@Html.DisplayFor(model => model.Document)</p>
         </div>

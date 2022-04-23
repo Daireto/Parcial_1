@@ -6,7 +6,6 @@ namespace Parcial1.Data.Entities
     {
         public int Id { get; set; }
 
-        [Display(Name = "Usada")]
         public bool WasUsed { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]

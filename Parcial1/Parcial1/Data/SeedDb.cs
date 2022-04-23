@@ -14,7 +14,6 @@ namespace Parcial1.Data
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
-
             await CheckTicketsAsync();
             await CheckEntrancesAsync();
         }

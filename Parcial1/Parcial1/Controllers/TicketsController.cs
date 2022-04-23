@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Parcial1.Data;
 using Parcial1.Data.Entities;
 using Parcial1.Helpers;
@@ -23,7 +24,7 @@ namespace Parcial1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SearchTicket(SearchTicketViewModel model)
+        public async Task<IActionResult> SearchTicket(SearchViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +55,7 @@ namespace Parcial1.Controllers
 
         public async Task<IActionResult> SetTicket(int id)
         {
-            TicketViewModel model = new()
+            UpdateTicketViewModel model = new()
             {
                 Id = id,
                 Entrances = await _combosHelper.GetComboEntrancesAsync()
@@ -64,8 +65,7 @@ namespace Parcial1.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SetTicket(TicketViewModel model)
+        public async Task<IActionResult> SetTicket(UpdateTicketViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,9 @@ namespace Parcial1.Controllers
 
         public async Task<IActionResult> TicketDetails(int id)
         {
-            Ticket ticket = await _context.Tickets.FindAsync(id);
+            Ticket ticket = await _context.Tickets
+                .Include(t => t.Entrance)
+                .FirstOrDefaultAsync(t => t.Id == id);
             return View(ticket);
         }
     }

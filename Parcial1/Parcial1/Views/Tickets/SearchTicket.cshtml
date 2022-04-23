@@ -1,17 +1,17 @@
-﻿@model Parcial1.Models.SearchTicketViewModel
+﻿@model Parcial1.Models.SearchViewModel
 
 @{
     ViewData["Title"] = "Inicio";
 }
 
-<h1 style="text-align:center;">Sistema de boletería</h1>
+<h1 style="text-align:center;">Administración de tiquetes</h1>
 
 <hr />
 <div class="row" style="text-align:center;">
     <div class="col-md-4 offset-4">
         <form asp-controller="Tickets" asp-action="SearchTicket">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <h2>ID de la boleta:</h2>
+            <h4>Ingrese el ID de la boleta</h4>
             <input asp-for="Id" class="form-control"/>
             <span asp-validation-for="Id" class="text-danger"></span>
             <div class="form-group mt-2">
